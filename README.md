@@ -55,7 +55,7 @@ int main(void)
 }
 ```
 
-Example 1 :
+Example 2 :
 * 8 bit mode
 ```
 #include "main.h"
@@ -147,7 +147,7 @@ static const EmCharacterLcdConfiguration_t lcd20x4Configuration=
 
 
 static const uint8_t charBackSlash [8]= { 0x00, 0x10, 0x08, 0x04, 0x02, 0x01, 0x00, 0x00 };
-static const char loading[8] = {'|', '/', '-', 0};
+static const char loading[4] = {'|', '/', '-', 0};
   
 int main(void)
 {
@@ -159,6 +159,7 @@ int main(void)
 	HAL_GPIO_WritePin(LCD_RW_GPIO_Port, LCD_RW_Pin, GPIO_PIN_RESET);
 
 	EmCharacterLcd_t lcd20x4 = EmCharacterLcd(&lcd20x4Configuration);
+	EmCharacterLcd__createChar(lcd20x4, 0, charBackSlash);
 
 	while(1)
 	{
