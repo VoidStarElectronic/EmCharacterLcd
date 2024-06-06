@@ -114,7 +114,7 @@ int main(void)
 ```
 
 Example 3 :
-*special character
+* special character
 
 ```
 #include "main.h"
