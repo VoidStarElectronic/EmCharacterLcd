@@ -1,2 +1,2 @@
 # EmCharacterLcd
- Stm32 chracter Lcd driver
+ Stm32 Character Lcd driver
