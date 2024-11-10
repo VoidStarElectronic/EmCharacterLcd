@@ -7,7 +7,6 @@
 #define PARSE_BOOL(X)             (((X) == 0) ? 0 : 1)
 #define PARSE_GPIO_PinState(X)    (((X) == 0) ? GPIO_PIN_RESET : GPIO_PIN_SET)
 
-
 static inline void EmCharacterLcd__enablePulse(EmCharacterLcd_t self)
 {
 	HAL_GPIO_WritePin(self->config->en.gpioX, self->config->en.gpioPin, GPIO_PIN_SET);
@@ -212,17 +211,17 @@ void EmCharacterLcd__printf(EmCharacterLcd_t self, uint8_t x, uint8_t y, const c
 
 	int32_t address = x + self->config->colSize * y;
 	const int32_t size = self->config->colSize * self->config->rowSize;
-	uint8_t  buffer[80];
+	uint8_t  buffer[size + 1];
 	uint32_t count = 0;
 
 	va_list args;
 	va_start(args, fmt);
-	const uint32_t convertedSize = vsnprintf((char*)buffer, size, fmt, args);
+	const uint32_t convertedSize = vsnprintf((char*)buffer, size + 1, fmt, args);
 	va_end(args);
 
     while((count < convertedSize)&(address < size))
     {
-    	if(buffer[count] == '\n' || buffer[count] == '\r')
+    	if(buffer[count] == '\n')//|| buffer[count] == '\r')
     	{
     		address += self->config->colSize - (address % self->config->colSize);
     	}
@@ -232,7 +231,7 @@ void EmCharacterLcd__printf(EmCharacterLcd_t self, uint8_t x, uint8_t y, const c
         }
         else
     	{
-    		*(self->buffer + address) = buffer[count];
+    		self->buffer[address] = buffer[count];
     		++address;
     	}
     	++count;
