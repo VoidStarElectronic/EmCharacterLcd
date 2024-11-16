@@ -1,9 +1,9 @@
 # EmCharacterLcd
  Stm32 Character Lcd driver
  
-Example 1 :
+### Example 1 :
 * 4 bit mode
-```
+```c
 #include "main.h"
 #include "tim.h"
 #include "gpio.h"
@@ -55,9 +55,9 @@ int main(void)
 }
 ```
 
-Example 2 :
+### Example 2 :
 * 8 bit mode
-```
+```c
 #include "main.h"
 #include "tim.h"
 #include "gpio.h"
@@ -113,10 +113,9 @@ int main(void)
 }
 ```
 
-Example 3 :
+### Example 3 :
 * special character
-
-```
+```c
 #include "main.h"
 #include "tim.h"
 #include "gpio.h"
